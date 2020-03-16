@@ -9,6 +9,10 @@ namespace AulaSilvio0903
 {
     class Program
     {
+        struct Pessoa
+        {
+            
+        }
         static void Main(string[] args)
         {
             int opcoes;
@@ -20,13 +24,16 @@ namespace AulaSilvio0903
                 switch (opcoes)
                 {
                     case 1:
-                        Console.WriteLine("Menu Cadastro");
+                        InserirValores(myAll);
                         break;
                     case 2:
-                        Console.WriteLine("Menu Listar");
+                        ListarValores(myAll);
                         break;
                     case 3:
-                        Console.WriteLine("Menu Excluir");
+                        RemoverValor(myAll, myAll);
+                        break;
+                    case 4:
+                        BuscarValor(myAll);
                         break;
                 }
                 Console.ReadLine();
@@ -36,14 +43,28 @@ namespace AulaSilvio0903
         {
             Console.Clear();
             Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("----------------<1>Cadastro------------------");
-            Console.WriteLine("----------------<2>Listar--------------------");
-            Console.WriteLine("----------------<3>Excluir-------------------");
-            Console.WriteLine("----------------<0>Sair----------------------");
-            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("-                                           -");
+            Console.WriteLine("-    Inserir                             <1>-");
+            Console.WriteLine("-    Listar                              <2>-");
+            Console.WriteLine("-    Excluir                             <3>-");
+            Console.WriteLine("-    Buscar                              <4>-");
+            Console.WriteLine("-    Sair                                <0>-");
+            Console.WriteLine("-                                           -");
+            Console.WriteLine("---------------------------------------------");            
             return (int.Parse(Console.ReadLine()));
         }
-        public static void ListaValores(myAll)
+        public static void InserirValores(ArrayList myList)
+        {
+            Console.Clear();
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("-                                           -");
+            Console.WriteLine("-             ENTRADA DE DADOS              -");
+            Console.WriteLine("-                                           -");
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("Digite um nome:");
+            myList.Add(Console.ReadLine());
+        }
+        public static void ListarValores(ArrayList myAll)
         {
             foreach (object obj in myAll)
             {
@@ -51,10 +72,55 @@ namespace AulaSilvio0903
             }
             Console.WriteLine();
         }
-        public static void ReceberValor ()
+        public static void RemoverValor(IEnumerable myList, ArrayList Lista)
         {
-            Console.WriteLine("Digite um nome");
+            Console.Clear();
+            int flag = 0;
 
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("-                                           -");
+            Console.WriteLine("-             REMOVENDO DADOS               -");
+            Console.WriteLine("-                                           -");
+            Console.WriteLine("---------------------------------------------");
+
+            Console.WriteLine("Informe o nome a ser removido");
+            string nomeBusca = Console.ReadLine();
+
+            foreach (object obj in myList)
+            {
+                if ((string)obj == nomeBusca)
+                    flag = 1;
+            }
+            if (flag == 1) 
+            { 
+                Lista.Remove(nomeBusca);
+                Console.WriteLine("********** Nome excluído da lista **********");              
+            }
+            else
+            {
+                Console.WriteLine("********** Nome não localizado na lista **********");
+            }
         }
+        public static void BuscarValor( IEnumerable myList)
+        {
+            Console.Clear();
+            int flag = 0;
+
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("-                                           -");
+            Console.WriteLine("-           LOCALIZANDO DADOS               -");
+            Console.WriteLine("-                                           -");
+            Console.WriteLine("---------------------------------------------");
+
+            if (flag == 1)
+            {
+                Console.WriteLine("********** Nome localizado na lista **********");
+            }
+            else
+            {
+                Console.WriteLine("********** Nome não localizado na lista **********");
+            }
+
+        }        
     }
 }
